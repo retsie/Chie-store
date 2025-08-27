@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-4__(hn8!j9!@72d_il5o-#_@5%w4z1(jx40qn_801*wkvq+pd5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['django-chiestore-env.eba-ssepaqb2.us-west-2.elasticbeanstalk.com', 'awseb-e-bcdih7wzzy-stack-awsebrdsdatabase-avuqhnyczccq.cfgaawsqm9ae.us-west-2.rds.amazonaws.com:5432']
+
 
 
 # Application definition
@@ -69,6 +69,8 @@ WSGI_APPLICATION = 'chiekart.wsgi.application'
 AUTH_USER_MODEL = 'accounts.Account'
 
 if 'RDS_DB_NAME' in os.environ:
+    ALLOWED_HOSTS = ['django-chiestore-env.eba-ssepaqb2.us-west-2.elasticbeanstalk.com',
+                     'awseb-e-bcdih7wzzy-stack-awsebrdsdatabase-avuqhnyczccq.cfgaawsqm9ae.us-west-2.rds.amazonaws.com:5432']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -80,6 +82,7 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
+    ALLOWED_HOSTS = []
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
