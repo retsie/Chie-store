@@ -69,8 +69,7 @@ WSGI_APPLICATION = 'chiekart.wsgi.application'
 AUTH_USER_MODEL = 'accounts.Account'
 
 if 'RDS_DB_NAME' in os.environ:
-    ALLOWED_HOSTS = ['django-chiestore-env.eba-ssepaqb2.us-west-2.elasticbeanstalk.com',
-                     'awseb-e-bcdih7wzzy-stack-awsebrdsdatabase-avuqhnyczccq.cfgaawsqm9ae.us-west-2.rds.amazonaws.com:5432']
+    ALLOWED_HOSTS = [config['PROD_URL'], config['PROD_DB_HOST']]
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
